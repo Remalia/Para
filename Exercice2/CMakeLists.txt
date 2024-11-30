@@ -1,11 +1,14 @@
-cmake_minimum_required(VERSION 3.0.0)
-project(pearson VERSION 0.1.0 LANGUAGES CXX)
+# Version de cmake demandée.
+CMAKE_MINIMUM_REQUIRED( VERSION 2.8 )
+ 
+# Chemin des répertoires contenant les fichiers entêtes.
+INCLUDE_DIRECTORIES( src/include )
 
-set(CMAKE_CXX_STANDARD 17)
+# Chemin du répertoire contenant les binaires.
+SET ( EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE} )
 
-include_directories(src/include)
+# Création des exécutables.
+ADD_EXECUTABLE(Exercice2 src/Exercice2Test.cpp )
 
-set(EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE})
-
-add_executable(pearson src/pearson.cpp)
-
+# Faire parler le make.
+set( CMAKE_VERBOSE_MAKEFILE off )

@@ -1,0 +1,52 @@
+=======
+ Objet
+=======
+
+  Ce fichier décrit la façon d'utiliser cmake pour générer les executables.
+
+=========
+ Etape 1 (créer les sous-répertoire nécessaires)
+=========
+
+  Les commandes communes à toutes les plateformes sont listées dans le fichier
+CMakeLists.txt. L'adaptation à votre plateforme s'effectue par le biais du 
+fichier CMakeCache.txt.
+
+  Dans le sous-répertoire Squelette/, tapez la commande:
+     cmake -G"Unix Makefiles"
+qui a pour effet de générer les sous-répertoires et fichiers suivants :
+   bin/
+   CMakeFiles/
+   Makefile
+   CMakeCache.txt
+   cmake_install.cmake
+
+  Le sous-répertoire bin/ est destiné à accueillir l'exécutable tandis que
+le sous-répertoire CMakeFiles/ accueillera les fichiers objets produits par le 
+compilateur.
+
+=========
+ Etape 2 (modification du fichier CMakeCache.txt)
+=========
+
+  Dans le fichier CMakeCache.txt, remplacez les lignes suivantes :
+
+Ligne 22 : 
+  CMAKE_BUILD_TYPE:STRING=
+par :
+  CMAKE_BUILD_TYPE:STRING=Release
+
+Ligne 42:
+  CMAKE_CXX_FLAGS_RELEASE:STRING=-O3 -DNDEBUG
+par:
+  CMAKE_CXX_FLAGS_RELEASE:STRING=-Wall -Wextra -march=native -O3
+
+  L'effet de ces deux commandes et de fournir les options de compilation et
+d'optimisation propre à votre compilateur. Le fichier exécutable sera maintenant
+généré dans le sous-répertoire bin/Release.
+
+=========
+ Etape 3 (génération des executables).
+=========
+
+  Dans le sous-repertoire Squelette/, tapez simplement: make.
