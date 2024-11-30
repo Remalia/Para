@@ -1,0 +1,1 @@
+/usr/bin/c++ -Wall -Wextra -march=native -O3 -rdynamic CMakeFiles/Question3.dir/src/Question3Test.cpp.o -o bin/Release/Question3 

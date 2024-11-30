@@ -117,41 +117,115 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Exercice1
+# Target rules for targets named Question1
 
 # Build rule for target.
-Exercice1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Exercice1
-.PHONY : Exercice1
+Question1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Question1
+.PHONY : Question1
 
 # fast build rule for target.
-Exercice1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Exercice1.dir/build.make CMakeFiles/Exercice1.dir/build
-.PHONY : Exercice1/fast
+Question1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question1.dir/build.make CMakeFiles/Question1.dir/build
+.PHONY : Question1/fast
 
-src/Exercice1Test.o: src/Exercice1Test.cpp.o
-.PHONY : src/Exercice1Test.o
+#=============================================================================
+# Target rules for targets named Question2
+
+# Build rule for target.
+Question2: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Question2
+.PHONY : Question2
+
+# fast build rule for target.
+Question2/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question2.dir/build.make CMakeFiles/Question2.dir/build
+.PHONY : Question2/fast
+
+#=============================================================================
+# Target rules for targets named Question3
+
+# Build rule for target.
+Question3: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Question3
+.PHONY : Question3
+
+# fast build rule for target.
+Question3/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question3.dir/build.make CMakeFiles/Question3.dir/build
+.PHONY : Question3/fast
+
+src/Question1Test.o: src/Question1Test.cpp.o
+.PHONY : src/Question1Test.o
 
 # target to build an object file
-src/Exercice1Test.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Exercice1.dir/build.make CMakeFiles/Exercice1.dir/src/Exercice1Test.cpp.o
-.PHONY : src/Exercice1Test.cpp.o
+src/Question1Test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question1.dir/build.make CMakeFiles/Question1.dir/src/Question1Test.cpp.o
+.PHONY : src/Question1Test.cpp.o
 
-src/Exercice1Test.i: src/Exercice1Test.cpp.i
-.PHONY : src/Exercice1Test.i
+src/Question1Test.i: src/Question1Test.cpp.i
+.PHONY : src/Question1Test.i
 
 # target to preprocess a source file
-src/Exercice1Test.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Exercice1.dir/build.make CMakeFiles/Exercice1.dir/src/Exercice1Test.cpp.i
-.PHONY : src/Exercice1Test.cpp.i
+src/Question1Test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question1.dir/build.make CMakeFiles/Question1.dir/src/Question1Test.cpp.i
+.PHONY : src/Question1Test.cpp.i
 
-src/Exercice1Test.s: src/Exercice1Test.cpp.s
-.PHONY : src/Exercice1Test.s
+src/Question1Test.s: src/Question1Test.cpp.s
+.PHONY : src/Question1Test.s
 
 # target to generate assembly for a file
-src/Exercice1Test.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Exercice1.dir/build.make CMakeFiles/Exercice1.dir/src/Exercice1Test.cpp.s
-.PHONY : src/Exercice1Test.cpp.s
+src/Question1Test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question1.dir/build.make CMakeFiles/Question1.dir/src/Question1Test.cpp.s
+.PHONY : src/Question1Test.cpp.s
+
+src/Question2Test.o: src/Question2Test.cpp.o
+.PHONY : src/Question2Test.o
+
+# target to build an object file
+src/Question2Test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question2.dir/build.make CMakeFiles/Question2.dir/src/Question2Test.cpp.o
+.PHONY : src/Question2Test.cpp.o
+
+src/Question2Test.i: src/Question2Test.cpp.i
+.PHONY : src/Question2Test.i
+
+# target to preprocess a source file
+src/Question2Test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question2.dir/build.make CMakeFiles/Question2.dir/src/Question2Test.cpp.i
+.PHONY : src/Question2Test.cpp.i
+
+src/Question2Test.s: src/Question2Test.cpp.s
+.PHONY : src/Question2Test.s
+
+# target to generate assembly for a file
+src/Question2Test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question2.dir/build.make CMakeFiles/Question2.dir/src/Question2Test.cpp.s
+.PHONY : src/Question2Test.cpp.s
+
+src/Question3Test.o: src/Question3Test.cpp.o
+.PHONY : src/Question3Test.o
+
+# target to build an object file
+src/Question3Test.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question3.dir/build.make CMakeFiles/Question3.dir/src/Question3Test.cpp.o
+.PHONY : src/Question3Test.cpp.o
+
+src/Question3Test.i: src/Question3Test.cpp.i
+.PHONY : src/Question3Test.i
+
+# target to preprocess a source file
+src/Question3Test.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question3.dir/build.make CMakeFiles/Question3.dir/src/Question3Test.cpp.i
+.PHONY : src/Question3Test.cpp.i
+
+src/Question3Test.s: src/Question3Test.cpp.s
+.PHONY : src/Question3Test.s
+
+# target to generate assembly for a file
+src/Question3Test.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Question3.dir/build.make CMakeFiles/Question3.dir/src/Question3Test.cpp.s
+.PHONY : src/Question3Test.cpp.s
 
 # Help Target
 help:
@@ -161,10 +235,18 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Exercice1"
-	@echo "... src/Exercice1Test.o"
-	@echo "... src/Exercice1Test.i"
-	@echo "... src/Exercice1Test.s"
+	@echo "... Question1"
+	@echo "... Question2"
+	@echo "... Question3"
+	@echo "... src/Question1Test.o"
+	@echo "... src/Question1Test.i"
+	@echo "... src/Question1Test.s"
+	@echo "... src/Question2Test.o"
+	@echo "... src/Question2Test.i"
+	@echo "... src/Question2Test.s"
+	@echo "... src/Question3Test.o"
+	@echo "... src/Question3Test.i"
+	@echo "... src/Question3Test.s"
 .PHONY : help
 
 

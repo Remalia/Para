@@ -8,7 +8,9 @@ INCLUDE_DIRECTORIES( src/include )
 SET ( EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE} )
 
 # Création des exécutables.
-ADD_EXECUTABLE( Exercice1 src/Exercice1Test.cpp )
+ADD_EXECUTABLE( Question1 src/Question1Test.cpp )
+ADD_EXECUTABLE( Question2 src/Question2Test.cpp )
+ADD_EXECUTABLE( Question3 src/Question3Test.cpp )
 
 # Faire parler le make.
 set( CMAKE_VERBOSE_MAKEFILE off )
