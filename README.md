@@ -1,7 +1,6 @@
-Travail pour le devoir notee de la matiere parralelisme.
+Travail pour le devoir notée de la matiere parralélisme.
 
-Realisateur : 
+Réalisateur : 
 
-Corroller Typhaine
-
+Corroller Typhaine\n
 Jarrier Allan
