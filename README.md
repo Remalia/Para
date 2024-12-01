@@ -1,4 +1,4 @@
-# Travail pour le devoir notée de la matiere parralélisme.
+# Travail pour le devoir notée de la matière parralélisme.
 
 ## Réalisateur : 
 
