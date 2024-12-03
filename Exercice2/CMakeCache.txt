@@ -233,6 +233,9 @@ Project_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Project_SOURCE_DIR:STATIC=/home/jarrier231/Documents/M2/prog_para/TPNotee/Exercice2
 
+//The directory containing a CMake configuration file for TBB.
+TBB_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/TBB
+
 //Value Computed by CMake
 pearson_BINARY_DIR:STATIC=/home/jarrier231/Documents/M2/prog_para/TPNotee/Exercice2
 
