@@ -1,6 +1,6 @@
-# Travail pour le devoir notée de la matière parralélisme.
+# Travail pour le devoir noté de l'UE *Programmation parallèle et distribuée*.
 
-## Réalisateur : 
+### <ins>Réalisateurs</ins> : 
 
-### Corroller Typhaine      
-### Jarrier Allan
+- CORROLLER Typhaine
+- JARRIER Allan
