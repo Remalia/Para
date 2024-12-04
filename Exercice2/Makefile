@@ -153,6 +153,30 @@ src/Exercice2Test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Exercice2.dir/build.make CMakeFiles/Exercice2.dir/src/Exercice2Test.cpp.s
 .PHONY : src/Exercice2Test.cpp.s
 
+src/Metrics.o: src/Metrics.cpp.o
+.PHONY : src/Metrics.o
+
+# target to build an object file
+src/Metrics.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Exercice2.dir/build.make CMakeFiles/Exercice2.dir/src/Metrics.cpp.o
+.PHONY : src/Metrics.cpp.o
+
+src/Metrics.i: src/Metrics.cpp.i
+.PHONY : src/Metrics.i
+
+# target to preprocess a source file
+src/Metrics.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Exercice2.dir/build.make CMakeFiles/Exercice2.dir/src/Metrics.cpp.i
+.PHONY : src/Metrics.cpp.i
+
+src/Metrics.s: src/Metrics.cpp.s
+.PHONY : src/Metrics.s
+
+# target to generate assembly for a file
+src/Metrics.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Exercice2.dir/build.make CMakeFiles/Exercice2.dir/src/Metrics.cpp.s
+.PHONY : src/Metrics.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -165,6 +189,9 @@ help:
 	@echo "... src/Exercice2Test.o"
 	@echo "... src/Exercice2Test.i"
 	@echo "... src/Exercice2Test.s"
+	@echo "... src/Metrics.o"
+	@echo "... src/Metrics.i"
+	@echo "... src/Metrics.s"
 .PHONY : help
 
 

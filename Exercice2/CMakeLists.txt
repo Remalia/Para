@@ -4,11 +4,19 @@ CMAKE_MINIMUM_REQUIRED( VERSION 2.8 )
 # Chemin des répertoires contenant les fichiers entêtes.
 INCLUDE_DIRECTORIES( src/include )
 
+# Packages requis.
+FIND_PACKAGE( TBB ) 
+
 # Chemin du répertoire contenant les binaires.
 SET ( EXECUTABLE_OUTPUT_PATH bin/${CMAKE_BUILD_TYPE} )
 
 # Création des exécutables.
-ADD_EXECUTABLE(Exercice2 src/Exercice2Test.cpp )
+ADD_EXECUTABLE(Exercice2
+               src/Metrics.cpp
+               src/Exercice2Test.cpp)
+
+# Librairies avec lesquelles linker.
+TARGET_LINK_LIBRARIES( Exercice2 TBB::tbb )
 
 # Faire parler le make.
 set( CMAKE_VERBOSE_MAKEFILE off )

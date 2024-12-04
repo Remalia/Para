@@ -1,1 +1,1 @@
-/usr/bin/c++ -rdynamic CMakeFiles/Exercice2.dir/src/Exercice2Test.cpp.o -o bin/Exercice2 
+/usr/bin/c++ -rdynamic CMakeFiles/Exercice2.dir/src/Metrics.cpp.o CMakeFiles/Exercice2.dir/src/Exercice2Test.cpp.o -o bin/Exercice2  /usr/lib/x86_64-linux-gnu/libtbb.so.12.5 
