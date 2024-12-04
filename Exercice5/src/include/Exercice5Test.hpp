@@ -74,8 +74,6 @@ namespace merging {
       const OutputSize taille = std::ceil(mpn * 1.0 / threads);
 
 
-      // à modifier
-
       // Boucle parallèle sur les fragments.
       #pragma omp parallel for num_threads(threads)
       for (OutputSize ir = 0; ir < threads; ir++) {
@@ -125,60 +123,6 @@ namespace merging {
         }
 
       
-      /*
-      tbb::parallel_for(static_cast< OutputSize >(0), // Borne inférieure.
-      			mpn,                          // Borne supérieure.
-      			taille,                       // Pas.
-                        [&](const OutputSize& ir) -> void {  // Fonction.
-
-			  // Calcul du couple (j_{r}, k_{r}) correspondant au 
-			  // rang i_{r} dans le conteneur cible.
-			  InputSize1 jr;
-			  InputSize2 kr;
-			  coRank(ir, 
-			  	 first1, 
-			  	 m, 
-			  	 first2, 
-			  	 n, 
-			  	 comp, 
-			  	 jr, 
-			  	 kr);
-
-			  // Calcul de la valeur de i_{r+1} qu'il faut éventu-
-			  // ellement ajuster.
-			  OutputSize irp1 = ir + taille;
-			  if (irp1 > mpn) {
-			    irp1 = mpn;
-			  }
-
-			  // Calcul du couple (j_{r+1}, k_{r+1}) correspondant 
-			  // au rang i_{r+1} dans le conteneur cible.
-			  InputSize1 jrp1;
-			  InputSize2 krp1;
-			  coRank(irp1, 
-			  	 first1, 
-			  	 m, 
-			  	 first2, 
-			  	 n, 
-			  	 comp, 
-			  	 jrp1, 
-			  	 krp1);
-
-			  // Nous disposons de toutes les infos pour réaliser
-			  // la fusion dont le fragment courant est la cible.
-			  // Cette opération est réalisée via l'algorithme
-			  // merge de la bibliothèque standard.
-			  std::merge(first1 + jr, 
-			  	     first1 + jrp1,
-			  	     first2 + kr, 
-			  	     first2 + krp1,
-			  	     result + ir,
-			  	     comp);
-
-			});
-            */
-
-            // fin à modifier
 
       // Respect de la sémantique de l'algorithme merge.
       return result + mpn;

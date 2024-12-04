@@ -85,24 +85,10 @@ int main(int argc, char* argv[]) {
   std::cout << std::endl;
 
 
-
-  // à changer
-
-  // Initialisation du scheduler de TBB avec le nombre de cores logiques.
-  /*
-  #ifdef __TBB_info_H  
-    const int threads = tbb::info::default_concurrency();
-  #else  
-    const int threads = tbb::task_scheduler_init::default_num_threads();
-    tbb::task_scheduler_init init(threads);
-  #endif  
-  */
-
   // init du scheduler d'openmp
   const int threads = omp_get_max_threads();
   omp_set_num_threads(threads);  
   
-
 
   // L'algorithme ParallelStableMerge ne peut fonctionner qu'avec une relation
   // d'ordre telle que <= ou >= mais pas < ou >, ce qui est justement notre
