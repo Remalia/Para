@@ -4,6 +4,7 @@
 #include <cstring>
 #include <fstream>
 #include <iostream>
+#include <tbb/tbb.h>
 
 #define DEFAULT_NAME "pearson"
 
@@ -104,26 +105,73 @@ Data_Set load_file(std::istream &stream) noexcept {
 /*                                  calculate                                 */
 /* -------------------------------------------------------------------------- */
 
+
+// utilisation parallel_ reduce de tbb
+
+struct PartialSums {
+    double sum_x = 0.0;
+    double sum_y = 0.0;
+    double sum_xx = 0.0;
+    double sum_yy = 0.0;
+    double sum_xy = 0.0;
+    size_t n = 0;
+
+    PartialSums() = default; // pour le constructeur par défaut
+
+    // combinaison des res partiels
+    PartialSums(const PartialSums& a, const PartialSums& b) {
+        sum_x = a.sum_x + b.sum_x;
+        sum_y = a.sum_y + b.sum_y;
+        sum_xx = a.sum_xx + b.sum_xx;
+        sum_yy = a.sum_yy + b.sum_yy;
+        sum_xy = a.sum_xy + b.sum_xy;
+        n = a.n + b.n;
+    }
+
+    // fusion 
+    void operator+=(const PartialSums& other) {
+        sum_x += other.sum_x;
+        sum_y += other.sum_y;
+        sum_xx += other.sum_xx;
+        sum_yy += other.sum_yy;
+        sum_xy += other.sum_xy;
+        n += other.n;
+    }
+};
+
 Correlation calculate(const Data_Set &data_set) noexcept {
+    PartialSums total = tbb::parallel_reduce(
+        tbb::blocked_range<size_t>(0, data_set.n),
+        PartialSums(),
+        [&](const tbb::blocked_range<size_t>& range, PartialSums partial) {
+            for (size_t i = range.begin(); i < range.end(); ++i) {
+                const double x = data_set.x[i];
+                const double y = data_set.y[i];
+                partial.sum_x += x;
+                partial.sum_y += y;
+                partial.sum_xx += x * x;
+                partial.sum_yy += y * y;
+                partial.sum_xy += x * y;
+                partial.n++;
+            }
+            return partial;
+        },
+        [](const PartialSums& a, const PartialSums& b) {
+            return PartialSums(a, b);
+        }
+    );
 
-  double tot_x = 0.0, tot_y = 0.0;
-  for (size_t i = 0; i != data_set.n; i ++) {
-    tot_x += data_set.x[i];
-    tot_y += data_set.y[i];
-  }
-  const double moy_x = tot_x / data_set.n, moy_y = tot_y / data_set.n;
-  
-  double tot_xx = 0.0, tot_xy = 0.0, tot_yy = 0.0;
-  for (size_t i = 0; i != data_set.n; i ++) {
-    tot_xy += (data_set.x[i] - moy_x) * (data_set.y[i] - moy_y);
-    tot_xx += (data_set.x[i] - moy_x) * (data_set.x[i] - moy_x);
-    tot_yy += (data_set.y[i] - moy_y) * (data_set.y[i] - moy_x);
-  }
+    const double mean_x = total.sum_x / total.n;
+    const double mean_y = total.sum_y / total.n;
 
-  Correlation res;
-  res.a = tot_xy / tot_xx;
-  res.b = moy_y - res.a * moy_x;
-  res.r = tot_xy / std::sqrt(tot_xx * tot_yy);
+    const double covariance = total.sum_xy - total.n * mean_x * mean_y;
+    const double variance_x = total.sum_xx - total.n * mean_x * mean_x;
+    const double variance_y = total.sum_yy - total.n * mean_y * mean_y;
 
-  return res;
+    Correlation res;
+    res.a = covariance / variance_x;
+    res.b = mean_y - res.a * mean_x;
+    res.r = covariance / std::sqrt(variance_x * variance_y);
+
+    return res;
 }
