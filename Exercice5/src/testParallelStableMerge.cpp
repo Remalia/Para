@@ -1,4 +1,4 @@
-
+#include "ParallelStableMerge.hpp"
 #include "Metrics.hpp"
 #include <vector>
 #include <numeric>
@@ -6,8 +6,6 @@
 #include <sstream>
 #include <chrono>
 #include <cstdlib>
-#include <omp.h>
-
 
 /**
  * Programme principal.
@@ -17,7 +15,8 @@
  * @return @c EXIT_SUCCESS en cas d'exécution réussie ou @c EXIT_FAILURE en cas
  *   de problèmes.
  */
-int main(int argc, char* argv[]) {
+int
+main(int argc, char* argv[]) {
 
    // La ligne de commandes est vide : l'utilisateur demande de l'aide.
   if (argc == 1) {
@@ -84,25 +83,13 @@ int main(int argc, char* argv[]) {
   std::cout << "--[ merge: end ]--" << std::endl;
   std::cout << std::endl;
 
-
-
-  // à changer
-
   // Initialisation du scheduler de TBB avec le nombre de cores logiques.
-  /*
-  #ifdef __TBB_info_H  
-    const int threads = tbb::info::default_concurrency();
-  #else  
-    const int threads = tbb::task_scheduler_init::default_num_threads();
-    tbb::task_scheduler_init init(threads);
-  #endif  
-  */
-
-  // init du scheduler d'openmp
-  const int threads = omp_get_max_threads();
-  omp_set_num_threads(threads);  
-  
-
+#ifdef __TBB_info_H  
+  const int threads = tbb::info::default_concurrency();
+#else  
+  const int threads = tbb::task_scheduler_init::default_num_threads();
+  tbb::task_scheduler_init init(threads);
+#endif  
 
   // L'algorithme ParallelStableMerge ne peut fonctionner qu'avec une relation
   // d'ordre telle que <= ou >= mais pas < ou >, ce qui est justement notre
