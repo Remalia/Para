@@ -1,3 +1,0 @@
-/home/jarrier231/Documents/M2/prog_para/TPNotee/Exercice4/CMakeFiles/pearson.dir
-/home/jarrier231/Documents/M2/prog_para/TPNotee/Exercice4/CMakeFiles/edit_cache.dir
-/home/jarrier231/Documents/M2/prog_para/TPNotee/Exercice4/CMakeFiles/rebuild_cache.dir

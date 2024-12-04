@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/pearson.dir/src/pearson.cpp.o -o bin/pearson 
