@@ -1,1 +1,0 @@
-/usr/bin/c++ -rdynamic CMakeFiles/Exercice3.dir/src/Exercice3Test.cpp.o -o bin/Exercice3 
