@@ -108,6 +108,7 @@ Data_Set load_file(std::istream &stream) noexcept {
 
 // utilisation parallel_ reduce de tbb
 
+// regroupe les variables necessaires pour calculer la corrélation
 struct PartialSums {
     double sum_x = 0.0;
     double sum_y = 0.0;
@@ -118,7 +119,7 @@ struct PartialSums {
 
     PartialSums() = default; // pour le constructeur par défaut
 
-    // combinaison des res partiels
+    // combinaison des res partiels à partir des deux blocs
     PartialSums(const PartialSums& a, const PartialSums& b) {
         sum_x = a.sum_x + b.sum_x;
         sum_y = a.sum_y + b.sum_y;
@@ -128,7 +129,7 @@ struct PartialSums {
         n = a.n + b.n;
     }
 
-    // fusion 
+    // fusion des résultats partiels
     void operator+=(const PartialSums& other) {
         sum_x += other.sum_x;
         sum_y += other.sum_y;
@@ -139,11 +140,13 @@ struct PartialSums {
     }
 };
 
+// calcul de la corrélation 
 Correlation calculate(const Data_Set &data_set) noexcept {
+    // division du travail en blocs
     PartialSums total = tbb::parallel_reduce(
         tbb::blocked_range<size_t>(0, data_set.n),
         PartialSums(),
-        [&](const tbb::blocked_range<size_t>& range, PartialSums partial) {
+        [&](const tbb::blocked_range<size_t>& range, PartialSums partial) { // traite chaque bloc
             for (size_t i = range.begin(); i < range.end(); ++i) {
                 const double x = data_set.x[i];
                 const double y = data_set.y[i];
@@ -161,6 +164,7 @@ Correlation calculate(const Data_Set &data_set) noexcept {
         }
     );
 
+    // calcul des moyennes et des variances
     const double mean_x = total.sum_x / total.n;
     const double mean_y = total.sum_y / total.n;
 
