@@ -74,9 +74,13 @@ namespace merging {
       const OutputSize taille = std::ceil(mpn * 1.0 / threads);
 
 
-      // Boucle parallèle sur les fragments.
-      #pragma omp parallel for num_threads(threads)
+      // Boucle for parallèle sur les fragments.
+      #pragma omp parallel num_threads(threads)
+
+      #pragma omp single 
       for (OutputSize ir = 0; ir < threads; ir++) {
+        #pragma omp task firstprivate(ir)
+        {
         // Calcul du couple (j_{r}, k_{r}) correspondant au 
         // rang i_{r} dans le conteneur cible.
         InputSize1 jr;
@@ -120,9 +124,10 @@ namespace merging {
                      first2 + krp1,
                      result + ir,
                      comp);
-        }
-
-      
+          } // omp task
+        }// for
+        
+        #pragma omp taskwait // attendre la fin de tous les threads
 
       // Respect de la sémantique de l'algorithme merge.
       return result + mpn;

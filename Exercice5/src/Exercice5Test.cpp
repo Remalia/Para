@@ -99,9 +99,9 @@ int main(int argc, char* argv[]) {
   // 3) Bonjour le mal de tête ...
   const auto invComp = std::greater_equal< const Type& >();
 
-  // Durées d'exécution de l'algorithme ParallelStableMerge. Nous allons 
-  // utiliser plusieurs valeurs du nombre de threads disponibles.
-  // for (int nb = 1; nb <= threads; nb ++) {
+  // Durée d'exécution de l'algorithme ParallelStableMerge. 
+  
+  // pour le nombre de threads max
   start = std::chrono::steady_clock::now();
   for (size_t i = 0; i != iters; i ++) {
     merging::ParallelStableMerge::apply(lhs.rbegin(), 
