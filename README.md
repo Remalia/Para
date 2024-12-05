@@ -2,5 +2,5 @@
 
 ### <ins>Réalisateurs</ins> : 
 
-- CORROLLER Typhaine
-- JARRIER Allan
+- CORROLLER Typhaine (22001015)
+- JARRIER Allan (22302544)
